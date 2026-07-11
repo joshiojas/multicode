@@ -6,6 +6,11 @@ All notable changes to this project are documented here. The format is based on
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-07-11
+
+First public release, published to npm as [`multicode-mcp`](https://www.npmjs.com/package/multicode-mcp)
+(installs the `multicode` command).
+
 ### Added
 
 - Initial monorepo scaffolding: `@multicode/core`, `@multicode/persistence`, `@multicode/security`,
@@ -33,4 +38,5 @@ All notable changes to this project are documented here. The format is based on
   Claude Desktop, Cursor, Windsurf, VS Code (Copilot), Zed, Cline, Continue, and Gemini CLI, plus
   README architecture and task-flow diagrams.
 
-[Unreleased]: https://github.com/joshiojas/multicode/commits/main
+[Unreleased]: https://github.com/joshiojas/multicode/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/joshiojas/multicode/releases/tag/v0.1.0
