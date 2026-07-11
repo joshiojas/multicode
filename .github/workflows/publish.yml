@@ -46,12 +46,13 @@ jobs:
       - name: Sanity-check the bundled binary
         run: node packages/cli/dist/bundle/multicode.js --version
 
+      # `pnpm pack` resolves the `workspace:` protocol into the tarball's package.json, so plain
+      # `npm publish <tarball>` (which does not understand workspace: specifiers) works cleanly.
+      - name: Pack
+        run: pnpm -C packages/cli pack --pack-destination "$RUNNER_TEMP"
+
       - name: Publish to npm
         if: ${{ !inputs.dry_run }}
-        run: pnpm -C packages/cli publish --no-git-checks --access public
+        run: npm publish "$RUNNER_TEMP"/multicode-mcp-*.tgz --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Dry run (pack only)
-        if: ${{ inputs.dry_run }}
-        run: pnpm -C packages/cli pack --pack-destination "$RUNNER_TEMP"
