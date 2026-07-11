@@ -41,6 +41,6 @@ export const runInit = async (opts: InitOptions): Promise<number> => {
   print('  2. Check your setup:       multicode doctor');
   print('  3. Run the MCP server:     multicode serve');
   print('');
-  print('Register with Claude Code:   claude mcp add multicode -- npx -y multicode serve');
+  print('Register with Claude Code:   claude mcp add multicode -- npx -y multicode-mcp serve');
   return 0;
 };

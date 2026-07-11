@@ -1,11 +1,12 @@
 {
-  "name": "multicode",
+  "name": "multicode-mcp",
   "version": "0.1.0",
   "description": "Multicode — a model-agnostic MCP server for delegating software-engineering tasks to external coding agents. CLI + server entry point.",
   "license": "Apache-2.0",
   "type": "module",
   "bin": {
-    "multicode": "./dist/bin/multicode.js"
+    "multicode": "./dist/bin/multicode.js",
+    "multicode-mcp": "./dist/bin/multicode.js"
   },
   "exports": {
     ".": {

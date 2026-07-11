@@ -6,7 +6,7 @@ configured provider).
 ## 1. Register the server
 
 ```bash
-claude mcp add multicode -- npx -y multicode serve
+claude mcp add multicode -- npx -y multicode-mcp serve
 ```
 
 This adds an entry equivalent to:
@@ -14,7 +14,7 @@ This adds an entry equivalent to:
 ```json
 {
   "mcpServers": {
-    "multicode": { "command": "npx", "args": ["-y", "multicode", "serve"] }
+    "multicode": { "command": "npx", "args": ["-y", "multicode-mcp", "serve"] }
   }
 }
 ```
@@ -31,7 +31,7 @@ directory; add more by editing `~/.multicode/config.json`:
 }
 ```
 
-Validate it: `npx multicode config validate`.
+Validate it: `npx multicode-mcp config validate`.
 
 ## 3. Delegate a task
 
@@ -50,7 +50,7 @@ A write task that produces a verified diff:
 
 If a task needs an elevated action and your approval policy is `on_request`, the task parks in
 `awaiting_approval` and surfaces an `approval.requested` event. Approve it with the
-`multicode_respond_approval` tool (or `npx multicode approve <approvalId>`), then the task continues.
+`multicode_respond_approval` tool (or `npx multicode-mcp approve <approvalId>`), then the task continues.
 
 ## 5. Interactive sessions
 

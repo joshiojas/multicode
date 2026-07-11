@@ -18,7 +18,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 const transport = new StdioClientTransport({
   command: 'npx',
-  args: ['-y', 'multicode', 'serve'],
+  args: ['-y', 'multicode-mcp', 'serve'],
 });
 const client = new Client({ name: 'multicode-example', version: '1.0.0' });
 await client.connect(transport);

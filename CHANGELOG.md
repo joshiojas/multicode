@@ -26,7 +26,9 @@ All notable changes to this project are documented here. The format is based on
     mandatory `addConversationListener` subscription, `codex/event/<type>` notifications, base64
     command-output decoding, and `patch_apply_end` file-change mapping.
   - See the [Codex provider README](./packages/providers/codex/README.md#protocol-compatibility).
-- `multicode` CLI: `init`, `doctor`, `provider`, `task`, `approve`, `config`, and `serve`.
+- CLI published on npm as **`multicode-mcp`** (the unscoped name `multicode` was already taken); it
+  installs the `multicode` command. Run via `npx -y multicode-mcp serve`. Commands: `init`, `doctor`,
+  `provider`, `task`, `approve`, `config`, and `serve`.
 - Setup guide ([`docs/setup.md`](./docs/setup.md)) with verified install instructions for Claude Code,
   Claude Desktop, Cursor, Windsurf, VS Code (Copilot), Zed, Cline, Continue, and Gemini CLI, plus
   README architecture and task-flow diagrams.

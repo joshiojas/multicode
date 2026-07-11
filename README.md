@@ -20,8 +20,8 @@ strict workspace-root and path-traversal guards, approval policies, and verifica
 `git diff` output and command exit codes — never in an agent's own summary of what it did.
 
 ```bash
-npx -y multicode init         # one-time setup + provider login
-npx -y multicode serve        # run the MCP server over stdio (default)
+npx -y multicode-mcp init         # one-time setup + provider login
+npx -y multicode-mcp serve        # run the MCP server over stdio (default)
 ```
 
 → **Adding Multicode to Claude Code, Claude Desktop, Cursor, Windsurf, VS Code, Zed, Cline, Continue,
@@ -148,15 +148,15 @@ Requirements: **Node ≥ 20.10**, **git**, and the provider CLI you intend to us
 **One-time setup:**
 
 ```bash
-npx -y multicode init                 # create ~/.multicode + a starter config
-npx -y multicode provider login codex # reuse Codex's own login — no token touches Multicode
-npx -y multicode doctor               # verify Node, git, providers, and workspace roots
+npx -y multicode-mcp init                 # create ~/.multicode + a starter config
+npx -y multicode-mcp provider login codex # reuse Codex's own login — no token touches Multicode
+npx -y multicode-mcp doctor               # verify Node, git, providers, and workspace roots
 ```
 
 **Register with your client.** The fastest is Claude Code:
 
 ```bash
-claude mcp add --scope user multicode -- npx -y multicode serve
+claude mcp add --scope user multicode -- npx -y multicode-mcp serve
 ```
 
 Most other clients take a small config block. Note the wrapper differs — **VS Code uses `servers`**,
@@ -165,7 +165,7 @@ Most other clients take a small config block. Note the wrapper differs — **VS 
 ```json
 {
   "mcpServers": {
-    "multicode": { "command": "npx", "args": ["-y", "multicode", "serve"] }
+    "multicode": { "command": "npx", "args": ["-y", "multicode-mcp", "serve"] }
   }
 }
 ```

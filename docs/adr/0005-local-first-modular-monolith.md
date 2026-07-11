@@ -18,7 +18,7 @@ execution runtimes — behind interfaces from day one.
 
 ## Consequences
 
-- **Positive:** trivial install (`npx multicode`), no services to run, a small trusted computing base,
+- **Positive:** trivial install (`npx multicode-mcp`), no services to run, a small trusted computing base,
   and fast iteration. The interface seams (`Store`, `ProviderAdapter`/`ProviderRegistry`,
   `serveStdio`/`serveHttp`, `runCommand`/`WorktreeManager`, `Clock`) mean remote execution,
   PostgreSQL, hosted deployments, and new providers are **additive** later, not a redesign.

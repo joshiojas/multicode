@@ -42,7 +42,7 @@ shelling out to `codex exec`.
 Nothing to install; your MCP client can launch Multicode on demand:
 
 ```bash
-npx -y multicode --version
+npx -y multicode-mcp --version
 ```
 
 This is the form used in every client config below.
@@ -50,12 +50,12 @@ This is the form used in every client config below.
 ### Option B — global install
 
 ```bash
-npm install -g multicode
-# or: pnpm add -g multicode
+npm install -g multicode-mcp
+# or: pnpm add -g multicode-mcp
 multicode --version
 ```
 
-With a global install, replace `npx -y multicode` with just `multicode` in any config below.
+With a global install, replace `npx -y multicode-mcp` with just `multicode` in any config below.
 
 ### Option C — from source (for contributors)
 
@@ -68,7 +68,7 @@ pnpm build
 # The binary is now at packages/cli/dist/bin/multicode.js
 node packages/cli/dist/bin/multicode.js --version
 # Optionally link it onto your PATH as `multicode`:
-npm link -w multicode
+npm link -w multicode-mcp
 ```
 
 ## 3. First-time setup
@@ -77,14 +77,14 @@ Run these once:
 
 ```bash
 # 1. Create the data dir (~/.multicode) and a starter config
-npx -y multicode init
+npx -y multicode-mcp init
 
 # 2. Log in to a provider using ITS OWN login flow.
 #    For Codex this launches `codex login` — Multicode never sees or stores the token.
-npx -y multicode provider login codex
+npx -y multicode-mcp provider login codex
 
 # 3. Verify everything is wired up
-npx -y multicode doctor
+npx -y multicode-mcp doctor
 ```
 
 `doctor` checks Node, git, your config, each configured provider's load + auth status, and that your
@@ -95,13 +95,13 @@ root; `init` approves the current directory. Add more by editing `~/.multicode/c
 ## 4. Add Multicode to your MCP client
 
 Multicode is launched by your client over **stdio** with `command: npx` and
-`args: ["-y", "multicode", "serve"]`. The *wrapper* around that differs per client — most use an
+`args: ["-y", "multicode-mcp", "serve"]`. The *wrapper* around that differs per client — most use an
 `mcpServers` object, but **VS Code uses `servers` + `type`** and **Zed uses `context_servers`**.
 
 > [!NOTE]
 > **Windows (applies to every client):** some clients don't spawn through a shell, so bare `npx` can
 > fail. If a server won't start, wrap it as `"command": "cmd"`, `"args": ["/c", "npx", "-y",
-> "multicode", "serve"]` (or use `"npx.cmd"`), and make sure Node/npm are on `PATH`. WSL uses plain
+> "multicode-mcp", "serve"]` (or use `"npx.cmd"`), and make sure Node/npm are on `PATH`. WSL uses plain
 > `npx`.
 
 > [!IMPORTANT]
@@ -125,7 +125,7 @@ Multicode is launched by your client over **stdio** with `command: npx` and
 Fastest — one command (the `--` is required; it separates Claude's flags from the launch command):
 
 ```bash
-claude mcp add --scope user --transport stdio multicode -- npx -y multicode serve
+claude mcp add --scope user --transport stdio multicode -- npx -y multicode-mcp serve
 ```
 
 Or commit a **project-scoped** `.mcp.json` at the repo root so teammates get it too:
@@ -133,7 +133,7 @@ Or commit a **project-scoped** `.mcp.json` at the repo root so teammates get it 
 ```json
 {
   "mcpServers": {
-    "multicode": { "type": "stdio", "command": "npx", "args": ["-y", "multicode", "serve"] }
+    "multicode": { "type": "stdio", "command": "npx", "args": ["-y", "multicode-mcp", "serve"] }
   }
 }
 ```
@@ -151,7 +151,7 @@ No CLI. Open the **Claude menu in the OS menu bar → Settings… → Developer 
 ```json
 {
   "mcpServers": {
-    "multicode": { "command": "npx", "args": ["-y", "multicode", "serve"] }
+    "multicode": { "command": "npx", "args": ["-y", "multicode-mcp", "serve"] }
   }
 }
 ```
@@ -169,7 +169,7 @@ MCP → Add Custom MCP**:
 ```json
 {
   "mcpServers": {
-    "multicode": { "type": "stdio", "command": "npx", "args": ["-y", "multicode", "serve"] }
+    "multicode": { "type": "stdio", "command": "npx", "args": ["-y", "multicode-mcp", "serve"] }
   }
 }
 ```
@@ -184,7 +184,7 @@ View raw config**):
 ```json
 {
   "mcpServers": {
-    "multicode": { "command": "npx", "args": ["-y", "multicode", "serve"] }
+    "multicode": { "command": "npx", "args": ["-y", "multicode-mcp", "serve"] }
   }
 }
 ```
@@ -202,7 +202,7 @@ Create `.vscode/mcp.json` in your workspace:
 ```json
 {
   "servers": {
-    "multicode": { "type": "stdio", "command": "npx", "args": ["-y", "multicode", "serve"] }
+    "multicode": { "type": "stdio", "command": "npx", "args": ["-y", "multicode-mcp", "serve"] }
   }
 }
 ```
@@ -210,7 +210,7 @@ Create `.vscode/mcp.json` in your workspace:
 Or run the CLI (adds it to your user profile):
 
 ```bash
-code --add-mcp '{"name":"multicode","command":"npx","args":["-y","multicode","serve"]}'
+code --add-mcp '{"name":"multicode","command":"npx","args":["-y","multicode-mcp","serve"]}'
 ```
 
 Requires **GitHub Copilot Chat in Agent mode** — MCP tools aren't exposed in Ask/Edit mode. `mcp.json`
@@ -227,7 +227,7 @@ Server**, and add:
 ```json
 {
   "context_servers": {
-    "multicode": { "command": "npx", "args": ["-y", "multicode", "serve"], "env": {} }
+    "multicode": { "command": "npx", "args": ["-y", "multicode-mcp", "serve"], "env": {} }
   }
 }
 ```
@@ -245,7 +245,7 @@ In the Cline panel, click the **MCP Servers** icon → **Configure MCP Servers**
   "mcpServers": {
     "multicode": {
       "command": "npx",
-      "args": ["-y", "multicode", "serve"],
+      "args": ["-y", "multicode-mcp", "serve"],
       "disabled": false,
       "autoApprove": []
     }
@@ -269,7 +269,7 @@ mcpServers:
     command: npx
     args:
       - "-y"
-      - "multicode"
+      - "multicode-mcp"
       - "serve"
 ```
 
@@ -278,7 +278,7 @@ MCP tools are available only in **Agent mode**.
 ### Gemini CLI
 
 ```bash
-gemini mcp add multicode npx -- -y multicode serve   # add -s user for a global (~/.gemini) install
+gemini mcp add multicode npx -- -y multicode-mcp serve   # add -s user for a global (~/.gemini) install
 ```
 
 The `--` separates Gemini's own flags from the server's args. Or edit `~/.gemini/settings.json`:
@@ -286,7 +286,7 @@ The `--` separates Gemini's own flags from the server's args. Or edit `~/.gemini
 ```json
 {
   "mcpServers": {
-    "multicode": { "command": "npx", "args": ["-y", "multicode", "serve"] }
+    "multicode": { "command": "npx", "args": ["-y", "multicode-mcp", "serve"] }
   }
 }
 ```
@@ -300,7 +300,7 @@ The near-universal shape is a `mcpServers` map of `command` + `args`:
 ```json
 {
   "mcpServers": {
-    "multicode": { "command": "npx", "args": ["-y", "multicode", "serve"], "env": {} }
+    "multicode": { "command": "npx", "args": ["-y", "multicode-mcp", "serve"], "env": {} }
   }
 }
 ```
@@ -332,7 +332,7 @@ also serve over **Streamable HTTP** for controlled remote/shared access.
 
    ```bash
    export MULTICODE_TOKEN="$(openssl rand -hex 32)"
-   npx -y multicode serve --transport http
+   npx -y multicode-mcp serve --transport http
    ```
 
 3. Point an HTTP-capable MCP client at `http://127.0.0.1:7461/mcp` with header
@@ -376,13 +376,13 @@ Per-task overrides (sandbox, network, approvals, timeout) are also accepted as a
 
 | Symptom | Fix |
 |---|---|
-| Client shows no Multicode tools | Fully **restart** the client after editing its config. Confirm the command runs: `npx -y multicode serve` should start and wait on stdin. |
-| `No Multicode config found … run multicode init` | Run `npx -y multicode init`, or pass `--config <path>`. |
+| Client shows no Multicode tools | Fully **restart** the client after editing its config. Confirm the command runs: `npx -y multicode-mcp serve` should start and wait on stdin. |
+| `No Multicode config found … run multicode init` | Run `npx -y multicode-mcp init`, or pass `--config <path>`. |
 | `provider "codex" is failed` in `doctor` | Ensure the `codex` CLI is on `PATH` and `codex app-server` works. Check `passthroughEnv` includes `PATH`/`HOME`. |
-| `not logged in` | `npx -y multicode provider login codex` (reuses Codex's own login). |
+| `not logged in` | `npx -y multicode-mcp provider login codex` (reuses Codex's own login). |
 | `Requested workspace root is not within any approved root` | Add the path to `workspaceRoots` in the config and `multicode config validate`. |
 | `Write tasks require … a Git repository` | Write tasks need the workspace root to be a git repo. `git init` it, or use `mode: read_only`. |
-| Windows: server won't launch via `npx` | Some clients need `cmd /c npx -y multicode serve`, or use a global install and the bare `multicode` command. See the per-client notes in §4. |
+| Windows: server won't launch via `npx` | Some clients need `cmd /c npx -y multicode-mcp serve`, or use a global install and the bare `multicode` command. See the per-client notes in §4. |
 | Logs pollute the MCP stream | They shouldn't — Multicode logs to **stderr**, never stdout. If you see JSON on stderr, that's expected; set `logging.level` to `warn` to quiet it. |
 
 Enable verbose logging with `"logging": { "level": "debug" }` (written to stderr; the server also
@@ -392,7 +392,7 @@ accepts `"logging": { "file": "/path/to/multicode.log" }`).
 
 1. Remove the server entry from your MCP client config (delete the `multicode` block or run the
    client's remove command, e.g. `claude mcp remove multicode`).
-2. Uninstall the package: `npm uninstall -g multicode` (if globally installed).
+2. Uninstall the package: `npm uninstall -g multicode-mcp` (if globally installed).
 3. Delete state: `rm -rf ~/.multicode`.
 4. Provider credentials belong to the provider — remove them with the provider's own tooling
    (e.g. `codex logout`).

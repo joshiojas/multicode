@@ -1,13 +1,14 @@
-# multicode
+# multicode-mcp
 
 The CLI and composition root for [Multicode](https://github.com/multicode/multicode) — a model-agnostic
-MCP server for delegating software-engineering tasks to external coding agents.
+MCP server for delegating software-engineering tasks to external coding agents. Installs the
+`multicode` command.
 
 ```bash
-npx multicode init                 # create the data dir + a starter config
-npx multicode provider login codex # reuse Codex's own login (no token touches Multicode)
-npx multicode doctor               # verify the setup
-npx multicode serve                # run the MCP server over stdio (default)
+npx multicode-mcp init                 # create the data dir + a starter config
+npx multicode-mcp provider login codex # reuse Codex's own login (no token touches Multicode)
+npx multicode-mcp doctor               # verify the setup
+npx multicode-mcp serve                # run the MCP server over stdio (default)
 ```
 
 Commands: `init`, `serve` (`--transport stdio|http`), `doctor`, `provider (list|status|login)`,
@@ -16,7 +17,7 @@ Commands: `init`, `serve` (`--transport stdio|http`), `doctor`, `provider (list|
 Register with Claude Code:
 
 ```bash
-claude mcp add multicode -- npx -y multicode serve
+claude mcp add multicode -- npx -y multicode-mcp serve
 ```
 
 This package is the only one that binds a concrete provider (registering Codex as a built-in), keeping
