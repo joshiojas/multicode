@@ -51,8 +51,28 @@ jobs:
       - name: Pack
         run: pnpm -C packages/cli pack --pack-destination "$RUNNER_TEMP"
 
+      # Idempotency: skip publishing a version that already exists on npm, so re-runs (e.g. a
+      # GitHub Release created after a manual publish) succeed instead of failing on a duplicate.
+      - name: Check npm for this version
+        id: pkg
+        run: |
+          NAME=$(node -p "require('./packages/cli/package.json').name")
+          VERSION=$(node -p "require('./packages/cli/package.json').version")
+          echo "name=$NAME" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          if npm view "$NAME@$VERSION" version >/dev/null 2>&1; then
+            echo "published=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::$NAME@$VERSION is already on npm — publish will be skipped."
+          else
+            echo "published=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Publish to npm
-        if: ${{ !inputs.dry_run }}
+        if: ${{ !inputs.dry_run && steps.pkg.outputs.published == 'false' }}
         run: npm publish "$RUNNER_TEMP"/multicode-mcp-*.tgz --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Skip (version already published)
+        if: ${{ !inputs.dry_run && steps.pkg.outputs.published == 'true' }}
+        run: echo "✔ ${{ steps.pkg.outputs.name }}@${{ steps.pkg.outputs.version }} already on npm — nothing to publish."
