@@ -44,7 +44,9 @@ export const registerTools = (server: McpServer, orchestrator: Orchestrator): vo
     {
       title: 'List providers',
       description:
-        'List configured coding-agent providers and their negotiated capabilities and load status.',
+        'List the configured coding-agent providers and their negotiated capabilities (write, resume, ' +
+        'steering, approvals) and load status. Call this first to discover whether task delegation is ' +
+        'available and which provider to hand work to.',
       inputSchema: {},
     },
     async (): Promise<ToolResult> => guard(async () => ({ providers: orchestrator.listProviders() })),
@@ -55,7 +57,14 @@ export const registerTools = (server: McpServer, orchestrator: Orchestrator): vo
     {
       title: 'Start a coding task',
       description:
-        'Delegate a software-engineering task to a provider. Read-only by default; write tasks run in an isolated Git worktree. Returns immediately with the task in a running state; poll multicode_get_task / multicode_get_events for progress.',
+        'Delegate a self-contained software-engineering task to a provider\'s coding agent, which works ' +
+        'autonomously and returns a change VERIFIED against real Git diffs and command exit codes — not ' +
+        'just its own summary. Read-only by default; `write` tasks run in an isolated Git worktree, never ' +
+        'your working copy. Use this to hand off / offload well-scoped work (implement a feature, fix a ' +
+        'bug, add tests, refactor a module), to run work in the background or several tasks in parallel, ' +
+        'or whenever the user asks to use Codex/another agent. Returns immediately with the task running; ' +
+        'then poll multicode_get_task, stream multicode_get_events, and review multicode_get_diff. Prefer ' +
+        'doing trivial one-line edits yourself rather than delegating them.',
       inputSchema: {
         providerId: z.string().describe('Configured provider id, e.g. "codex".'),
         prompt: z.string().min(1).describe('The instruction for the agent.'),
