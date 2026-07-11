@@ -48,10 +48,10 @@ jobs:
 
       - name: Publish to npm
         if: ${{ !inputs.dry_run }}
-        run: pnpm --filter multicode-mcp publish --no-git-checks --access public
+        run: pnpm -C packages/cli publish --no-git-checks --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Dry run (pack only)
         if: ${{ inputs.dry_run }}
-        run: pnpm --filter multicode-mcp pack
+        run: pnpm -C packages/cli pack --pack-destination "$RUNNER_TEMP"
