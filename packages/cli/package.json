@@ -1,41 +1,42 @@
 {
   "name": "multicode-mcp",
   "version": "0.1.0",
-  "description": "Multicode — a model-agnostic MCP server for delegating software-engineering tasks to external coding agents. CLI + server entry point.",
+  "description": "Multicode — a model-agnostic MCP server for delegating software-engineering tasks to external coding agents. Installs the `multicode` command.",
   "license": "Apache-2.0",
   "type": "module",
   "bin": {
-    "multicode": "./dist/bin/multicode.js",
-    "multicode-mcp": "./dist/bin/multicode.js"
+    "multicode": "./dist/bundle/multicode.js",
+    "multicode-mcp": "./dist/bundle/multicode.js"
   },
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    }
-  },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": ["dist", "README.md"],
+  "files": ["dist/bundle", "README.md"],
   "publishConfig": {
     "access": "public"
   },
+  "engines": {
+    "node": ">=20.10.0"
+  },
   "keywords": ["mcp", "model-context-protocol", "codex", "coding-agent", "ai", "cli"],
+  "homepage": "https://github.com/multicode/multicode",
   "scripts": {
     "build": "tsc -b",
+    "bundle": "tsup",
     "clean": "rimraf dist *.tsbuildinfo"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "better-sqlite3": "^12.2.0",
+    "commander": "^13.0.0",
+    "pino": "^9.6.0",
+    "pino-pretty": "^13.0.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
     "@multicode/core": "workspace:*",
     "@multicode/persistence": "workspace:*",
     "@multicode/provider-codex": "workspace:*",
     "@multicode/provider-sdk": "workspace:*",
     "@multicode/security": "workspace:*",
     "@multicode/server": "workspace:*",
-    "commander": "^13.0.0",
-    "zod": "^3.24.1"
-  },
-  "devDependencies": {
-    "@modelcontextprotocol/sdk": "^1.12.0"
+    "tsup": "^8.3.5"
   }
 }

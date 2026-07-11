@@ -1,0 +1,57 @@
+name: Publish
+
+# Publishes the self-contained `multicode-mcp` package to npm.
+#
+# The npm token is read from the repository secret `NPM_TOKEN` — it is NEVER stored in the repo.
+# Add it once (repo → Settings → Secrets and variables → Actions), e.g.:
+#   gh secret set NPM_TOKEN --repo <owner>/<repo>
+# Then publish by creating a GitHub Release, or run this workflow manually (Actions → Publish → Run).
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (pack without publishing)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Build and bundle
+        run: |
+          pnpm build
+          pnpm --filter multicode-mcp bundle
+
+      - name: Sanity-check the bundled binary
+        run: node packages/cli/dist/bundle/multicode.js --version
+
+      - name: Publish to npm
+        if: ${{ !inputs.dry_run }}
+        run: pnpm --filter multicode-mcp publish --no-git-checks --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Dry run (pack only)
+        if: ${{ inputs.dry_run }}
+        run: pnpm --filter multicode-mcp pack
