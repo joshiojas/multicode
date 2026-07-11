@@ -15,7 +15,7 @@ This document explains the layering, the task lifecycle, the data model, and the
    (any)                 └───────────────────────┬─────────────────────┘
                                                  │  MCP (stdio / Streamable HTTP)
                          ┌───────────────────────▼─────────────────────┐
-                         │              @multicode/cli                  │  composition root
+                         │               multicode-mcp                  │  composition root
                          │  init · doctor · provider · task · serve     │  (binds providers)
                          └───────────────────────┬─────────────────────┘
                          ┌───────────────────────▼─────────────────────┐
@@ -41,7 +41,7 @@ This document explains the layering, the task lifecycle, the data model, and the
 
 **The dependency rule:** arrows point toward `@multicode/core`. The core, persistence, security, and
 server layers **never import a provider**. Concrete providers are bound only at the composition root
-(`@multicode/cli`), which registers them on a `ProviderRegistry`. This is what keeps the system
+(the `multicode-mcp` CLI), which registers them on a `ProviderRegistry`. This is what keeps the system
 model-agnostic: adding a provider touches only its own package plus one registration line.
 
 ## Packages

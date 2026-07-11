@@ -15,7 +15,7 @@ standards we hold code to, and how to propose changes.
 ## Getting set up
 
 ```bash
-git clone https://github.com/multicode/multicode
+git clone https://github.com/joshiojas/multicode
 cd multicode
 corepack enable
 pnpm install

@@ -1,6 +1,6 @@
 # @multicode/provider-sdk
 
-The stable contract for building [Multicode](https://github.com/multicode/multicode) providers, plus
+The stable contract for building [Multicode](https://github.com/joshiojas/multicode) providers, plus
 capability negotiation, an isolation-aware registry/loader, and the shared conformance suite.
 
 ```ts
@@ -16,6 +16,6 @@ import { FakeProvider } from '@multicode/provider-sdk/testing';
 - Every provider must pass `runConformance(factory)` — the same suite the reference `FakeProvider`
   passes.
 
-See the [provider guide](https://github.com/multicode/multicode/blob/main/docs/providers.md).
+See the [provider guide](https://github.com/joshiojas/multicode/blob/main/docs/providers.md).
 
 Licensed under Apache-2.0.

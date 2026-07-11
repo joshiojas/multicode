@@ -6,7 +6,7 @@ seriously and welcome responsible disclosure.
 ## Reporting a vulnerability
 
 **Do not open a public issue for security problems.** Instead, use GitHub's private
-["Report a vulnerability"](https://github.com/multicode/multicode/security/advisories/new) flow, or
+["Report a vulnerability"](https://github.com/joshiojas/multicode/security/advisories/new) flow, or
 email `security@multicode.dev` with:
 
 - A description of the issue and its impact.

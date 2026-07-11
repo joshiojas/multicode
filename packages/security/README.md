@@ -1,7 +1,7 @@
 # @multicode/security
 
 The enforcement layer that makes it safe to run untrusted coding-agent output in
-[Multicode](https://github.com/multicode/multicode).
+[Multicode](https://github.com/joshiojas/multicode).
 
 - **Path confinement** — `WorkspaceGuard` / `resolveWithinRoot`: rejects lexical traversal and
   symlink escapes; validated by property-based tests.
@@ -12,6 +12,6 @@ The enforcement layer that makes it safe to run untrusted coding-agent output in
 - **Policy resolution** — `resolveExecutionPolicy` / `assertPolicyEnforceable`: no silent privilege
   escalation; enforceability checked against provider capabilities.
 
-See the [security model](https://github.com/multicode/multicode/blob/main/docs/security.md).
+See the [security model](https://github.com/joshiojas/multicode/blob/main/docs/security.md).
 
 Licensed under Apache-2.0.

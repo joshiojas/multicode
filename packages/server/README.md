@@ -1,7 +1,7 @@
 # @multicode/server
 
 The provider-neutral MCP server and task orchestrator for
-[Multicode](https://github.com/multicode/multicode).
+[Multicode](https://github.com/joshiojas/multicode).
 
 - The **Orchestrator**: durable task lifecycle, event streaming, approval routing, cancellation and
   timeouts, Git-based verification, worktree lifecycle, and boot-time recovery.

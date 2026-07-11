@@ -7,7 +7,7 @@
 Both assume you have run the one-time setup:
 
 ```bash
-npx multicode-mcp init
-npx multicode-mcp provider login codex   # reuses Codex's own login; no token touches Multicode
-npx multicode-mcp doctor                 # verify everything is wired up
+npx -y multicode-mcp init
+npx -y multicode-mcp provider login codex   # reuses Codex's own login; no token touches Multicode
+npx -y multicode-mcp doctor                 # verify everything is wired up
 ```

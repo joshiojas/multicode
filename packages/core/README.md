@@ -1,6 +1,6 @@
 # @multicode/core
 
-The provider-neutral heart of [Multicode](https://github.com/multicode/multicode). Nothing here imports
+The provider-neutral heart of [Multicode](https://github.com/joshiojas/multicode). Nothing here imports
 a provider, a transport, or a persistence engine.
 
 It defines the domain: branded identifiers, an injectable `Clock`, a structured `Logger` interface, the
@@ -13,6 +13,6 @@ configuration schema.
 import { assertTransition, ProviderCapabilities, MulticodeConfig } from '@multicode/core';
 ```
 
-See the [architecture docs](https://github.com/multicode/multicode/blob/main/docs/architecture.md).
+See the [architecture docs](https://github.com/joshiojas/multicode/blob/main/docs/architecture.md).
 
 Licensed under Apache-2.0.

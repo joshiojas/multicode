@@ -113,16 +113,22 @@ from, and is what the suite validates itself against.
 
 ## Case study: Codex
 
-The Codex adapter (`@multicode/provider-codex`) integrates through the official Codex **App Server** — a
-JSON-RPC 2.0 service over stdio (`codex app-server`) — **not** terminal scraping or `codex exec`. It:
+The Codex adapter (`@multicode/provider-codex`, shipped inside `multicode-mcp`) integrates through the
+official Codex **App Server** — a JSON-RPC service over stdio (`codex app-server`) — **not** terminal
+scraping or `codex exec`. It implements **both** App Server protocol generations, selected by
+`config.protocol` (default `v2`):
 
-- spawns the App Server and speaks newline-delimited JSON-RPC (`JsonRpcEndpoint`);
-- maps Codex `codex/event` notifications to neutral events (`mapCodexMsg`);
-- routes `execCommandApproval` / `applyPatchApproval` server→client requests through
-  `ctx.requestApproval`;
-- maps cancellation to `interruptConversation`;
-- reports auth status by checking that `~/.codex/auth.json` exists, **without reading it**.
+- **v2 "thread / turn / item"** (current Codex ≳ 0.106) — `thread/start` → `turn/start`, item-lifecycle
+  streaming via `item/*` notifications, `turn/steer` for steering, `turn/interrupt` for cancellation,
+  and `item/commandExecution|fileChange/requestApproval` approvals. See `provider-v2.ts`,
+  `events-v2.ts` (`mapV2Notification`), and `protocol-v2.ts`.
+- **v1 "conversation"** (legacy Codex ≲ 0.105) — `newConversation` plus the mandatory
+  `addConversationListener`, `codex/event/<type>` notifications (`mapCodexMsg`),
+  `execCommandApproval`/`applyPatchApproval`, and `interruptConversation`. See `provider.ts`,
+  `events.ts`, and `protocol.ts`.
 
-The exact method/event names are centralized in `protocol.ts` for alignment with a given Codex release,
-and the whole adapter is validated by conformance against an in-process mock App Server, so it is
-exercised without a real Codex binary.
+Both drivers share the transport (`JsonRpcEndpoint`, newline-delimited JSON) and report auth status by
+checking that `~/.codex/auth.json` exists, **without reading it**. Method/event names are centralized in
+`protocol.ts` / `protocol-v2.ts` for alignment with a given Codex release, and each driver is validated
+by the shared conformance suite against a faithful in-process mock App Server — so both are exercised
+without a real Codex binary.

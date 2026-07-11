@@ -60,14 +60,15 @@ With a global install, replace `npx -y multicode-mcp` with just `multicode` in a
 ### Option C — from source (for contributors)
 
 ```bash
-git clone https://github.com/multicode/multicode
+git clone https://github.com/joshiojas/multicode
 cd multicode
 corepack enable
 pnpm install
 pnpm build
-# The binary is now at packages/cli/dist/bin/multicode.js
+# Run it directly (tsc build output):
 node packages/cli/dist/bin/multicode.js --version
-# Optionally link it onto your PATH as `multicode`:
+# …or build the self-contained bundle and link the `multicode` command onto your PATH:
+pnpm --filter multicode-mcp bundle
 npm link -w multicode-mcp
 ```
 

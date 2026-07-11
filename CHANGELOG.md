@@ -33,4 +33,4 @@ All notable changes to this project are documented here. The format is based on
   Claude Desktop, Cursor, Windsurf, VS Code (Copilot), Zed, Cline, Continue, and Gemini CLI, plus
   README architecture and task-flow diagrams.
 
-[Unreleased]: https://github.com/multicode/multicode/commits/main
+[Unreleased]: https://github.com/joshiojas/multicode/commits/main

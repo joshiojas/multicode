@@ -1,14 +1,17 @@
 # @multicode/provider-codex
 
 The [Codex](https://developers.openai.com/codex/) provider for
-[Multicode](https://github.com/multicode/multicode), integrated through the official Codex **App
+[Multicode](https://github.com/joshiojas/multicode), integrated through the official Codex **App
 Server** (JSON-RPC 2.0 over stdio) — **not** terminal scraping or `codex exec`.
 
 - Spawns `codex app-server` and speaks newline-delimited JSON-RPC.
 - Streams Codex events into Multicode's neutral event model.
-- Routes `execCommandApproval` / `applyPatchApproval` through the run context's approval channel.
-- Maps cancellation to `interruptConversation`.
+- Routes command- and patch-approval requests through the run context's approval channel.
+- Maps cancellation (and, on v2, steering) to the App Server's turn controls.
 - Reports login status without ever reading the token (`~/.codex/auth.json` existence only).
+
+Supports **both** Codex App Server protocol generations — v2 (default) and v1 — selected by
+`config.protocol`. See [Protocol compatibility](#protocol-compatibility) below.
 
 Codex is registered as a **built-in** provider by the Multicode CLI; you can also configure it as a
 package provider. The App Server method/event names are centralized in `protocol.ts` for alignment with

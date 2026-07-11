@@ -4,7 +4,7 @@
 
 **A model-agnostic MCP server for delegating software-engineering tasks to external coding agents.**
 
-[![CI](https://github.com/multicode/multicode/actions/workflows/ci.yml/badge.svg)](https://github.com/multicode/multicode/actions/workflows/ci.yml)
+[![CI](https://github.com/joshiojas/multicode/actions/workflows/ci.yml/badge.svg)](https://github.com/joshiojas/multicode/actions/workflows/ci.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE)
 [![Node](https://img.shields.io/badge/node-%3E%3D20.10-brightgreen)](https://nodejs.org)
 
@@ -116,7 +116,7 @@ Multicode is a pnpm + TypeScript monorepo. The core never imports a provider.
 | [`@multicode/provider-sdk`](./packages/provider-sdk) | The stable provider adapter contract, capability negotiation, and the shared conformance suite third-party providers must pass. |
 | [`@multicode/server`](./packages/server) | The MCP server: tool definitions, the task orchestrator, event streaming, approval routing, recovery on boot. |
 | [`@multicode/provider-codex`](./packages/providers/codex) | The Codex adapter (official App Server protocol — not terminal scraping or `codex exec`). |
-| [`@multicode/cli`](./packages/cli) | The `multicode` binary: setup, diagnostics, provider management, task inspection, approvals, config validation, and `serve`. |
+| [`multicode-mcp`](./packages/cli) | The published CLI + composition root — the `multicode` binary: setup, diagnostics, provider management, task inspection, approvals, config validation, and `serve`. |
 
 See [`docs/architecture.md`](./docs/architecture.md) and the [ADRs](./docs/adr) for the reasoning.
 
@@ -185,7 +185,7 @@ See [`examples/`](./examples) for Claude Code and generic-MCP-client walkthrough
 ### Build from source (contributors)
 
 ```bash
-git clone https://github.com/multicode/multicode && cd multicode
+git clone https://github.com/joshiojas/multicode && cd multicode
 corepack enable && pnpm install && pnpm build
 node packages/cli/dist/bin/multicode.js doctor
 ```

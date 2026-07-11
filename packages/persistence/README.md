@@ -1,6 +1,6 @@
 # @multicode/persistence
 
-Durable, transactional storage for [Multicode](https://github.com/multicode/multicode) behind a
+Durable, transactional storage for [Multicode](https://github.com/joshiojas/multicode) behind a
 backend-agnostic `Store` interface, with a SQLite implementation.
 
 - Forward-only migrations recorded in `schema_migrations`.

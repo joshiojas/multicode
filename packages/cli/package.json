@@ -16,7 +16,7 @@
     "node": ">=20.10.0"
   },
   "keywords": ["mcp", "model-context-protocol", "codex", "coding-agent", "ai", "cli"],
-  "homepage": "https://github.com/multicode/multicode",
+  "homepage": "https://github.com/joshiojas/multicode",
   "scripts": {
     "build": "tsc -b",
     "bundle": "tsup",
