@@ -72,6 +72,9 @@ importers:
       '@multicode/provider-codex':
         specifier: workspace:*
         version: link:../providers/codex
+      '@multicode/provider-ollama':
+        specifier: workspace:*
+        version: link:../providers/ollama
       '@multicode/provider-sdk':
         specifier: workspace:*
         version: link:../provider-sdk
@@ -124,6 +127,15 @@ importers:
       zod:
         specifier: ^3.24.1
         version: 3.25.76
+
+  packages/providers/ollama:
+    dependencies:
+      '@multicode/core':
+        specifier: workspace:*
+        version: link:../../core
+      '@multicode/provider-sdk':
+        specifier: workspace:*
+        version: link:../../provider-sdk
 
   packages/security:
     dependencies:

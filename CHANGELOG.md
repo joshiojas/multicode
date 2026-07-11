@@ -6,6 +6,18 @@ All notable changes to this project are documented here. The format is based on
 
 ## [Unreleased]
 
+### Added
+
+- **Ollama provider** (`@multicode/provider-ollama`) — a built-in provider to delegate coding tasks to a
+  local model (e.g. `gemma`) via the Ollama API. Demonstrates that the provider SDK is model-agnostic;
+  it applies model-produced file writes into the confined worktree (no untrusted command execution) and
+  tolerates small-model JSON quirks with a corrective retry.
+
+### Fixed
+
+- Orchestrator: a provider's structured failure (`{ code, message }`) is now preserved on the task's
+  error instead of being mangled into "Unknown error".
+
 ## [0.1.0] - 2026-07-11
 
 First public release, published to npm as [`multicode-mcp`](https://www.npmjs.com/package/multicode-mcp)

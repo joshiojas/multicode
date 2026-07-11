@@ -22,6 +22,7 @@ export default defineConfig({
       { find: '@multicode/provider-sdk', replacement: pkg('./packages/provider-sdk/src/index.ts') },
       { find: '@multicode/server', replacement: pkg('./packages/server/src/index.ts') },
       { find: '@multicode/provider-codex', replacement: pkg('./packages/providers/codex/src/index.ts') },
+      { find: '@multicode/provider-ollama', replacement: pkg('./packages/providers/ollama/src/index.ts') },
       { find: '@multicode/cli', replacement: pkg('./packages/cli/src/index.ts') },
     ],
   },

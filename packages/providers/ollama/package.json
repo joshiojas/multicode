@@ -1,0 +1,25 @@
+{
+  "name": "@multicode/provider-ollama",
+  "version": "0.1.0",
+  "description": "Ollama provider adapter for Multicode — delegate coding tasks to a local model (e.g. gemma) via the Ollama API.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "private": true,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist", "README.md"],
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rimraf dist *.tsbuildinfo"
+  },
+  "dependencies": {
+    "@multicode/core": "workspace:*",
+    "@multicode/provider-sdk": "workspace:*"
+  }
+}

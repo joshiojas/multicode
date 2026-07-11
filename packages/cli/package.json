@@ -34,6 +34,7 @@
     "@multicode/core": "workspace:*",
     "@multicode/persistence": "workspace:*",
     "@multicode/provider-codex": "workspace:*",
+    "@multicode/provider-ollama": "workspace:*",
     "@multicode/provider-sdk": "workspace:*",
     "@multicode/security": "workspace:*",
     "@multicode/server": "workspace:*",

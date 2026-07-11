@@ -10,6 +10,7 @@ import {
 } from '@multicode/core';
 import { ProviderRegistry } from '@multicode/provider-sdk';
 import { createProvider as createCodexProvider } from '@multicode/provider-codex';
+import { createProvider as createOllamaProvider } from '@multicode/provider-ollama';
 
 export interface GlobalOptions {
   readonly config?: string;
@@ -75,10 +76,11 @@ export const starterConfig = (
 
 /**
  * Construct a provider registry with the built-in providers registered. This is the composition root
- * where a concrete provider (Codex) is bound; the server and core never import a provider directly.
+ * where concrete providers are bound; the server and core never import a provider directly.
  */
 export const createRegistry = (logger: Logger): ProviderRegistry => {
   const registry = new ProviderRegistry({ logger });
   registry.registerBuiltin('codex', createCodexProvider);
+  registry.registerBuiltin('ollama', createOllamaProvider);
   return registry;
 };

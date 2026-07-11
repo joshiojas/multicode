@@ -154,6 +154,8 @@ describe('Orchestrator (end-to-end with FakeProvider + real git)', () => {
     const task = await harness.orchestrator.awaitTask(asTaskId(started.id));
     expect(task.status).toBe('failed');
     expect(task.error?.code).toBeDefined();
+    // The provider's structured error message must be preserved, not mangled to "Unknown error".
+    expect(task.error?.message).toContain('boom');
   });
 
   it('rejects a task whose workspace root is not approved', async () => {

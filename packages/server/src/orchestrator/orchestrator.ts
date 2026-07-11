@@ -2,6 +2,7 @@ import {
   CancelledError,
   ConflictError,
   NotFoundError,
+  ProviderError,
   StartTaskInput,
   ValidationError,
   asArtifactId,
@@ -463,7 +464,9 @@ export class Orchestrator {
       return;
     }
     if (result.status === 'failed') {
-      await this.#fail(id, toMulticodeError(result.error ?? { code: 'PROVIDER_ERROR', message: 'provider failed' }), sessionId);
+      // The provider returns a structured { code, message }; preserve its message (a plain object
+      // would otherwise be mangled into "Unknown error" by toMulticodeError).
+      await this.#fail(id, new ProviderError(result.error?.message ?? 'provider failed'), sessionId);
       return;
     }
 

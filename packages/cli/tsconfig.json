@@ -11,7 +11,8 @@
     { "path": "../security" },
     { "path": "../provider-sdk" },
     { "path": "../server" },
-    { "path": "../providers/codex" }
+    { "path": "../providers/codex" },
+    { "path": "../providers/ollama" }
   ],
   "include": ["src/**/*.ts"],
   "exclude": ["dist", "node_modules", "**/*.test.ts"]
