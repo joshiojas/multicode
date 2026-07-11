@@ -1,0 +1,28 @@
+{
+  "name": "@multicode/provider-codex",
+  "version": "0.1.0",
+  "description": "Codex provider adapter for Multicode, integrated through the official Codex App Server (JSON-RPC over stdio).",
+  "license": "Apache-2.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist", "README.md"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rimraf dist *.tsbuildinfo"
+  },
+  "dependencies": {
+    "@multicode/core": "workspace:*",
+    "@multicode/provider-sdk": "workspace:*",
+    "zod": "^3.24.1"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "name": "multicode",
+  "version": "0.1.0",
+  "description": "Multicode — a model-agnostic MCP server for delegating software-engineering tasks to external coding agents. CLI + server entry point.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "bin": {
+    "multicode": "./dist/bin/multicode.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist", "README.md"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": ["mcp", "model-context-protocol", "codex", "coding-agent", "ai", "cli"],
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rimraf dist *.tsbuildinfo"
+  },
+  "dependencies": {
+    "@multicode/core": "workspace:*",
+    "@multicode/persistence": "workspace:*",
+    "@multicode/provider-codex": "workspace:*",
+    "@multicode/provider-sdk": "workspace:*",
+    "@multicode/security": "workspace:*",
+    "@multicode/server": "workspace:*",
+    "commander": "^13.0.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "@multicode/server",
+  "version": "0.1.0",
+  "description": "The Multicode MCP server: provider-neutral tool surface, task orchestrator, event streaming, approvals, verification, and recovery.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist", "README.md"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rimraf dist *.tsbuildinfo"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "@multicode/core": "workspace:*",
+    "@multicode/persistence": "workspace:*",
+    "@multicode/provider-sdk": "workspace:*",
+    "@multicode/security": "workspace:*",
+    "pino": "^9.6.0",
+    "pino-pretty": "^13.0.0",
+    "zod": "^3.24.1"
+  }
+}

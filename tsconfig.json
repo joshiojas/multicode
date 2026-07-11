@@ -1,0 +1,12 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/core" },
+    { "path": "packages/persistence" },
+    { "path": "packages/security" },
+    { "path": "packages/provider-sdk" },
+    { "path": "packages/server" },
+    { "path": "packages/providers/codex" },
+    { "path": "packages/cli" }
+  ]
+}
